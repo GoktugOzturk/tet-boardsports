@@ -1,0 +1,51 @@
+<?php
+/**
+ * @var bool   $hasActiveFilters
+ * @var string $clearActiveFiltersLink
+ * @var array  $activeFilters
+ * @var array  $parentCategories
+ * @var array  $subCategories
+ * @var array  $filterGroups
+ */
+?>
+<div class="filtreler">
+    <? if ($hasActiveFilters) { ?>
+        <div class="filter-content filtered block">
+            <ul class="nav">
+                <? foreach ($activeFilters as $activeFilter) { ?>
+                    <li><span><?= $activeFilter['title'] ?></span>
+                        <a class="remove-filter" href="<?= $activeFilter['clearLink'] ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                    </li>
+                <? } ?>
+            </ul>
+            <a href="<?= $clearActiveFiltersLink ?>" class="selectedDelete">TÜM SEÇİMİ SİL</a>
+        </div>
+    <? } ?>
+    <!-- secimler -->
+    <? if (count($subCategories)) { ?>
+        <div class="filter-content">
+            <h2 class="title-block">KATEGORİ</h2>
+            <div class="block mb15">
+                <ul class="nav">
+                    <? foreach ($subCategories as $category) { ?>
+                        <li><a href="<?= $category['link'] ?>"><?= $category['title'] ?></a></li>
+                    <? } ?>
+                </ul><!-- #nav# -->
+            </div><!-- #block# -->
+        </div><!-- #filter-content# -->
+    <? } ?>
+    <? if (count($filterGroups)) { ?>
+        <? foreach ($filterGroups as $filterGroup) { ?>
+            <div class="filter-content">
+                <h2 class="title-block"><?= $filterGroup['title'] ?></h2>
+                <div class="block mb15">
+                    <ul class="nav scrollbar">
+                        <? foreach ($filterGroup['items'] as $item) { ?>
+                            <li><a href="<?= $item['link'] ?>"><?= $item['title'] ?> (<?= $item['resultCount'] ?>)</a></li>
+                        <? } ?>
+                    </ul><!-- #nav# -->
+                </div><!-- #block# -->
+            </div>
+        <? } ?>
+    <? } ?>
+</div><!-- #filtreler# -->

@@ -1,0 +1,32 @@
+<?
+/**
+ * @var \advertisement_model[]    $banners
+ * @var \advertisement_zone_model $zone
+ * @var bool                      $lazyLoad
+ * @var string                    $id
+ */
+?>
+<div id="<?= $id ?>" class="slider">
+    <div class="owl-carousel owl-theme">
+        <? foreach ($banners as $key => $banner) { ?>
+            <div class="item <?= ($key == 0 ? 'active' : '') ?>">
+                <?= image::getBannerHtml($banner) ?>
+            </div>
+        <? } ?>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#<?= $id ?> .owl-carousel').owlCarousel({
+            loop: true,
+            items: 1,
+            navigation: false, // Show next and prev buttons
+            autoplayHoverPause: true, // Stops autoplay
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            <? if ($lazyLoad) { ?>lazyLoad : true,<? } ?>
+            singleItem: true
+
+        });
+    });
+</script>

@@ -1,0 +1,70 @@
+{
+  "theme_tag": "boardsports",
+  "theme_name": "Board-Sports",
+  "theme_version": "1.0.0",
+  "compatible_with": "1.0.0",
+  "config": {
+    "skeletonView": {
+      "default": "global",
+      "cart": "checkout",
+      "checkout": "checkout"
+    },
+    "advertisementZones": {
+      "HomePageSlider": {
+        "description": "Anasayfa Kayan Slider",
+        "group": "Home",
+        "type": "Banner",
+        "width": 1170,
+        "limit": 10,
+        "sort_by": "Order"
+      },
+      "HomePageLeftDouble": {
+        "description": "Anasayfada soldaki alt alta iki banner",
+        "group": "Home",
+        "type": "Banner",
+        "width": 263,
+        "height": 130,
+        "limit": 2,
+        "sort_by": "Order"
+      },
+      "HomePageCenterSquare": {
+        "description": "Anasayfada ortadaki kare banner",
+        "group": "Home",
+        "type": "Banner",
+        "width": 263,
+        "height": 275,
+        "limit": 1,
+        "sort_by": "Random"
+      },
+      "HomePageRightRectange": {
+        "description": "Anasayfada sağdaki dikdörtgen banner",
+        "group": "Home",
+        "type": "Banner",
+        "width": 555,
+        "height": 275,
+        "limit": 1,
+        "sort_by": "Random"
+      }
+    },
+    "blockZones": {
+      "footer": {
+        "title": "Footer Alanı",
+        "description": "Bu alan site genelinde tüm sayfaların altında görünür"
+      },
+      "homePage": {
+        "title": "Ana Sayfa",
+        "description": "Bu alan anasayfa tasarımını özelleştirmenizi sağlar"
+      }
+    },
+    "productPhoto": {
+      "ratio": 1,
+      "width": {
+        "thumb": 66,
+        "widget": 263,
+        "catalog": 263,
+        "normal": 565,
+        "mail": 300
+      }
+    }
+  }
+}
