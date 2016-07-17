@@ -327,10 +327,10 @@
     .owl-filter-product .owl-next {
         display: none;
     }
-	
-	.xs-mb15 {
-		margin-bottom: 15px;
-	}
+
+    .xs-mb15 {
+        margin-bottom: 15px;
+    }
 
 }
 
@@ -338,7 +338,7 @@
     display: block;
 }
 
-.image-format  img {
+.image-format img {
     width: 100%;
 }
 
