@@ -16,7 +16,7 @@ Portfolyo: http://www.eraysayrac.com
 
 body {
     background-color: #EEE;
-    font-family: "Roboto";
+    font-family: "Roboto", serif;
 }
 
 .mb30 {
@@ -174,7 +174,7 @@ body {
 }
 
 #boardnav .navbar .dropdown-menu {
-    padding: 15px;
+    padding: 15px 0 15px 0;
     border-radius: 0;
     border: 0;
     display: block !important;
@@ -193,6 +193,8 @@ body {
 #boardnav .navbar .dropdown-menu li > a {
     position: relative;
     padding: 5px 10px 5px 15px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 #boardnav .navbar .dropdown-menu li a:before {
@@ -216,7 +218,8 @@ body {
 #boardnav .navbar .dropdown-menu li a:hover {
     background-color: transparent;
     color: #1AABE4;
-    padding-left: 26px;
+    padding-left: 25px;
+    margin-right: 5px;
 }
 
 #boardnav .navbar .dropdown-menu li a:hover:before {
@@ -352,14 +355,12 @@ a.acc-btn .glyphicon {
 
 .payment-options-wrapper {
     background-color: #FFF;
+    padding-top: 10px;
 }
 
 .payment-options {
     height: 40px;
-    background-position: center -117px;
-    background-image: url("../img/sprite.png");
-    background-repeat: no-repeat;
-    margin-top: 10px;
+    background: url("../img/sprite.png") no-repeat center -117px;
 }
 
 .sprite {
@@ -367,8 +368,7 @@ a.acc-btn .glyphicon {
     margin: 0 auto 15px auto;
     width: 50px;
     height: 50px;
-    background-image: url("../img/sprite.png");
-    background-repeat: no-repeat;
+    background: url("../img/sprite.png") no-repeat;
 }
 
 .sprite.ssl {
@@ -550,9 +550,8 @@ a.acc-btn .glyphicon {
     background-color: #FFF;
     width: 40px;
     height: 40px;
-    margin: 0;
     float: left;
-    margin-right: 5px;
+    margin: 0 5px 0 0;
 }
 
 /* badge colors */

@@ -1,38 +1,129 @@
 @charset "UTF-8";
 
-/* giriş için sayfa */
-.textButton {
-    margin-left: 10px;
-    display: inline-block;
-    padding: 8px 0;
+aside nav ul {
+    padding: 20px;
+    background-color: #FFF;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-label.error {
-    font-weight: normal;
-    color: darkred;
+aside nav li {
+    line-height: 35px;
+    list-style-type: none;
+}
+
+aside nav li > a {
+
+    display: block;
+    color: #000;
+    padding: 0;
+    background: transparent !important;
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+aside nav li > a.active,
+aside nav li > a:focus,
+aside nav li > a:hover {
+    text-decoration: none !important;
+    background-color: #1aabe4 !important;
+    color: #FFF;
+    padding-left: 10px;
+}
+
+aside h3 {
+    font-family: "Roboto",serif;
+    line-height: 20px;
+    padding: 20px;
+    font-size: 16px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+article section {
+    padding: 30px;
+    background: #FFF;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.section_body {
+
+}
+
+.section_title,
+.pageTitle {
+    margin-top: 0;
+}
+
+.panel-default {
+    border-color: #1aabe4;
+}
+
+.panel-group .panel {
+    border-radius: 0;
+}
+
+.panel-default > .panel-heading a {
+    text-decoration: none !important;
+}
+
+.panel-default > .panel-heading {
+    border-radius: 0;
+    border-color: #1aabe4;
+    background-color: inherit;
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.panel-default > .panel-heading.active {
+    background-color: #1aabe4;
+    color: #FFF;
+}
+
+/* giriş için sayfa */
+.loginPage button.facebook {
+    background-color: #3B5998 !important;
+    color: #FFFFFF;
+    border-color: #3B5998;
+    width: 210px;
+    font-weight: 300;
+}
+
+.loginPage button.googleplus {
+    background-color: #DD4B39 !important;
+    color: #FFFFFF;
+    border-color: #DD4B39;
+    width: 210px;
+    font-weight: 300;
+}
+
+.textButton {
+    margin-left: 10px;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.loginPage {
+    margin-bottom: 100px;
 }
 
 /* kullanıcı ayar sayfaları */
 /*panel ve içerik sayfaları*/
-.sideMenu h2 {
-    text-align: left;
-    padding-left: 10px;
-}
-
-.sideMenu ul a {
+.contentPageMenu ul a {
     margin-left: 10px;
 }
 
-.sideMenu ul a.active {
-    color: #F60;
+.contentPageMenu ul a.active {
+    color: #f06892;
 }
 
-.sideMenu ul li {
+.contentPageMenu ul li {
     margin-bottom: 8px;
     list-style: none;
 }
 
-.sideMenu .divider {
+.contentPageMenu .divider {
     height: 1px;
     margin: 10px 0;
     overflow: hidden;
@@ -100,7 +191,7 @@ label.error {
 
 .contentPage .oneOrderView {
     padding: 10px;
-    border: 1px solid #BBB;
+    border: 1px solid #BBBBBB;
     margin-bottom: 20px;
 }
 
@@ -163,53 +254,17 @@ label.error {
     width: 153px;
 }
 
-.panel-body ul, .panel-body ol {
-    margin-left: 20px
-}
-
 .media-heading {
     padding: 0;
 }
 
-.bankAccounts .iban_number {
-    font-weight: bold;
-    font-size: 16px;
-    display: block;
-    margin-bottom: 5px;
+@media only screen and (max-width: 767px) {
+    .oneOrderViewMbl h2 {
+        text-indent: 0;
+        margin-left: 0;
+        /*float: left;*/
+        text-align: left;
+    }
 }
 
-/* Adresler */
-.box {
-    border: 1px solid #CCC;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.address-item {
-    height: 250px;
-}
-
-.address-item-content {
-    padding: 10px;
-    text-align: center;
-}
-
-.address-item-content p {
-    height: 165px;
-    overflow-y: auto;
-}
-
-.address-item-new a {
-    padding: 100px 10px 10px;
-    display: block;
-    text-align: center;
-    height: 248px;
-    cursor: pointer;
-}
-
-.address-buttons {
-    position: absolute;
-    bottom: 30px;
-    right: 20px;
-}
+/**/
