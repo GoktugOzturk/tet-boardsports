@@ -265,7 +265,7 @@ header {
     float: right;
 }
 
-#boardnav .badge.cartItems {
+.badge.cartItems {
     margin-left: 10px;
     background-color: #FFF;
     color: #1AABE4;
