@@ -10,7 +10,7 @@ function initMobileMenu() {
 $(function () {
     /* fixed Navbar */
     navbar = $("#boardnav");
-    if(navbar.length > 0){
+    if (navbar.length > 0) {
         navbaroffset = navbar.offset().top;
     }
     $(window).on('scroll resize', function () {
@@ -35,4 +35,10 @@ $(function () {
     $(".opener").click(function () {
         $(this).toggleClass("active").closest("li").find(".drop-down").toggleClass("active");
     });
+
+    $('.panel-heading a').click(function () {
+        $('.panel-heading').removeClass('active');
+        $(this).parents('.panel-heading').addClass('active');
+    });
+
 });
