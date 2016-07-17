@@ -327,17 +327,22 @@
     .owl-filter-product .owl-next {
         display: none;
     }
+	
+	.xs-mb15 {
+		margin-bottom: 15px;
+	}
+
 }
 
 .image-format a {
     display: block;
 }
 
-.image-format a img {
+.image-format  img {
     width: 100%;
 }
 
-.vertical-image-format a:first-child {
+.vertical-image-format img:first-of-type {
     margin-bottom: 15px;
 }
 
@@ -345,8 +350,4 @@
     display: block;
     width: 100%;
     height: auto;
-}
-
-.xs-mb15 {
-    margin-bottom: 15px;
 }
