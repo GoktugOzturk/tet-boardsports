@@ -26,13 +26,13 @@ aside nav li > a.active,
 aside nav li > a:focus,
 aside nav li > a:hover {
     text-decoration: none !important;
-    background-color: #1aabe4 !important;
+    background-color: #1AABE4 !important;
     color: #FFF;
     padding-left: 10px;
 }
 
 aside h3 {
-    font-family: "Roboto",serif;
+    font-family: "Roboto", serif;
     line-height: 20px;
     padding: 20px;
     font-size: 16px;
@@ -57,7 +57,7 @@ article section {
 }
 
 .panel-default {
-    border-color: #1aabe4;
+    border-color: #1AABE4;
 }
 
 .panel-group .panel {
@@ -70,21 +70,21 @@ article section {
 
 .panel-default > .panel-heading {
     border-radius: 0;
-    border-color: #1aabe4;
+    border-color: #1AABE4;
     background-color: inherit;
     -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .panel-default > .panel-heading.active {
-    background-color: #1aabe4;
+    background-color: #1AABE4;
     color: #FFF;
 }
 
 /* giriş için sayfa */
 .loginPage button.facebook {
     background-color: #3B5998 !important;
-    color: #FFFFFF;
+    color: #FFF;
     border-color: #3B5998;
     width: 210px;
     font-weight: 300;
@@ -92,7 +92,7 @@ article section {
 
 .loginPage button.googleplus {
     background-color: #DD4B39 !important;
-    color: #FFFFFF;
+    color: #FFF;
     border-color: #DD4B39;
     width: 210px;
     font-weight: 300;
@@ -115,7 +115,7 @@ article section {
 }
 
 .contentPageMenu ul a.active {
-    color: #f06892;
+    color: #F06892;
 }
 
 .contentPageMenu ul li {
@@ -191,7 +191,7 @@ article section {
 
 .contentPage .oneOrderView {
     padding: 10px;
-    border: 1px solid #BBBBBB;
+    border: 1px solid #BBB;
     margin-bottom: 20px;
 }
 
@@ -267,4 +267,45 @@ article section {
     }
 }
 
-/**/
+.bankAccounts .iban_number {
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Adresler */
+.box {
+    border: 1px solid #CCC;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.address-item {
+    height: 250px;
+}
+
+.address-item-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.address-item-content p {
+    height: 165px;
+    overflow-y: auto;
+}
+
+.address-item-new a {
+    padding: 100px 10px 10px;
+    display: block;
+    text-align: center;
+    height: 248px;
+    cursor: pointer;
+}
+
+.address-buttons {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+}
