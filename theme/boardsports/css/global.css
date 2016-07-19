@@ -485,14 +485,6 @@ footer h3 {
     background-color: #1AABE4;
 }
 
-.buttonFacebook {
-    background-color: #4267b2;
-}
-
-.buttonGooglePlus {
-    background-color: #d73d32;
-}
-
 .btn-primary {
     background-color: #1AABE4;
     border: 0;
@@ -504,6 +496,26 @@ footer h3 {
 .btn-primary:active,
 .btn-primary:focus {
     background-color: #167fa7 !important;
+}
+
+.buttonFacebook {
+    background-color: #4267b2;
+}
+
+.buttonFacebook:hover,
+.buttonFacebook:active,
+.buttonFacebook:focus {
+    background-color: #1a3367 !important;
+}
+
+.buttonGooglePlus {
+    background-color: #d73d32;
+}
+
+.buttonGooglePlus:hover,
+.buttonGooglePlus:active,
+.buttonGooglePlus:focus {
+    background-color: #a12c23 !important;
 }
 
 /* Badges */
@@ -704,11 +716,16 @@ footer h3 {
     color: #838383;
     font-weight: 400;
 }
-
+/*
 .breadcrumbs div:after {
     content: "›";
     margin-left: 5px;
 }
+.breadcrumbs div:last-child:after {
+    content: "";
+    margin-left: 5px;
+}
+*/
 
 .mb15 {
     margin-bottom: 15px;
