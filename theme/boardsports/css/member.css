@@ -101,25 +101,6 @@ article section {
     letter-spacing: 1px;
 }
 
-.btn-primary {
-    background-color: #1AABE4;
-    border: 0;
-}
-
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:focus {
-    background-color: #1AABE4 !important;
-}
-
-.buttonFacebook {
-    background-color: #4267b2;
-}
-
-.buttonGooglePlus {
-    background-color: #d73d32;
-}
-
 /* giriş için sayfa */
 .loginPage button.facebook {
     background-color: #3B5998 !important;

@@ -345,13 +345,15 @@ a.acc-btn .glyphicon {
 }
 
 .privilege:hover {
-    -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05), 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05), 0 5px 10px 0 rgba(0, 0, 0, 0.05);
 }
 
 .payment-options-wrapper {
     background-color: #FFF;
     padding-top: 10px;
+    -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.13);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.13);
 }
 
 .payment-options {
@@ -461,10 +463,47 @@ footer h3 {
     display: none;
     position: fixed;
     z-index: 2;
+    left: 0;
+    right: 0;
 }
 
 #mobile-menu-buttons .glyphicon {
     margin-right: 10px;
+}
+
+.typeahead {
+    right: 15px;
+}
+
+.typeahead.dropdown-menu > li > a {
+    padding: 10px 20px;
+}
+
+.typeahead.dropdown-menu > .active > a,
+.typeahead.dropdown-menu > .active > a:focus,
+.typeahead.dropdown-menu > .active > a:hover {
+    background-color: #1AABE4;
+}
+
+.buttonFacebook {
+    background-color: #4267b2;
+}
+
+.buttonGooglePlus {
+    background-color: #d73d32;
+}
+
+.btn-primary {
+    background-color: #1AABE4;
+    border: 0;
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #167fa7 !important;
 }
 
 /* Badges */
@@ -717,8 +756,7 @@ footer h3 {
     }
 
     #logo {
-        display: block;
-        text-align: center;
+        display: inline-block;
         margin: 60px 0 0 0;
     }
 
