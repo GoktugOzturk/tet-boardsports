@@ -47,7 +47,7 @@ article section {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.panel-group{
+.panel-group {
     margin-bottom: 0;
 }
 
@@ -84,13 +84,15 @@ article section {
     background-color: #1AABE4;
     color: #FFF;
 }
-.block{
+
+.block {
     padding: 30px;
     background-color: #FFF;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.block-title{
+
+.block-title {
     font-family: "Roboto", serif;
     line-height: 30px;
     padding: 20px;
@@ -98,15 +100,26 @@ article section {
     margin: 0;
     letter-spacing: 1px;
 }
-.btn-primary{
-    background-color:#1AABE4;
-    border:0;
+
+.btn-primary {
+    background-color: #1AABE4;
+    border: 0;
 }
+
 .btn-primary:hover,
 .btn-primary:active,
-.btn-primary:focus{
-    background-color:#1AABE4!important;
+.btn-primary:focus {
+    background-color: #1AABE4 !important;
 }
+
+.buttonFacebook {
+    background-color: #4267b2;
+}
+
+.buttonGooglePlus {
+    background-color: #d73d32;
+}
+
 /* giriş için sayfa */
 .loginPage button.facebook {
     background-color: #3B5998 !important;
