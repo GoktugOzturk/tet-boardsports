@@ -383,8 +383,17 @@ a.acc-btn .glyphicon {
     background-position: -100px 0
 }
 
+footer h3 {
+    color: #FFF;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
 .footer-lists {
-    background: #1AABE4;
+    background: #333;
     color: #FFF;
 }
 
@@ -395,33 +404,36 @@ a.acc-btn .glyphicon {
     clear: both;
 }
 
-.footer-list {
-    padding: 30px;
+.footer-list, .footer-block {
+    padding: 30px 0;
 }
 
-.footer-list .title {
-    color: #CEF1FF;
-    font-weight: 700;
-    margin-bottom: 10px;
+.footer-list ul {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
 }
 
-.footer-list .nav > li > a {
+.footer-list ul > li > a {
     font-size: 13px;
     padding: 5px 0;
-    color: #CEF1FF !important;
+    color: #FFF !important;
+    display: inline-block;
+    position: relative;
 }
 
-.footer-list .nav > li > a:focus,
-.footer-list .nav > li > a:hover {
+.footer-list ul > li > a:focus,
+.footer-list ul > li > a:hover {
     background-color: inherit;
-    color: #FFF !important;
+    text-decoration: none;
+    color: #1AABE4 !important;
 }
 
 .copyright {
     font-size: 12px;
     padding-top: 10px;
     color: #FFF;
-    background: #333;
+    background: #1AABE4;
     text-align: center;
 }
 
@@ -530,7 +542,7 @@ a.acc-btn .glyphicon {
     display: inline-block;
     cursor: default;
     color: #FFF;
-    background-color: #ff9000;
+    background-color: #FF9000;
     border-radius: 30px;
     line-height: 40px;
     padding-right: 10px;
@@ -545,7 +557,7 @@ a.acc-btn .glyphicon {
 }
 
 .product .badges .sprite {
-    border: 2px solid #ff9000;
+    border: 2px solid #FF9000;
     border-radius: 100%;
     background-color: #FFF;
     width: 40px;
@@ -572,11 +584,11 @@ a.acc-btn .glyphicon {
 }
 
 .badge.new-product .option {
-    background-color: #9337ce;
+    background-color: #9337CE;
 }
 
 .badge.new-product .option .sprite {
-    border: 2px solid #9337ce;
+    border: 2px solid #9337CE;
 }
 
 /* badge positions */

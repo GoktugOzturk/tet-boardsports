@@ -288,7 +288,7 @@
     margin-bottom: -5px;
 }
 
-.product .product-meta .addToBasket {
+.product .product-meta .addToCart {
     text-decoration: none;
     position: absolute;
     top: 0;
@@ -303,7 +303,7 @@
     width: 55px;
 }
 
-.product .product-meta .addToBasket:hover {
+.product .product-meta .addToCart:hover {
     padding: 15px 17px;
     font-size: 20px;
 }
