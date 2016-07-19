@@ -16,7 +16,7 @@ Portfolyo: http://www.eraysayrac.com
 
 body {
     background-color: #EEE;
-    font-family: "Roboto", serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .mb30 {
@@ -210,8 +210,6 @@ body {
     transition: transform 0.3s ease-in-out;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%;
     border-radius: 100%;
 }
 
@@ -280,8 +278,6 @@ header {
     background-color: #1AABE4;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
     border-radius: 2px;
     color: #FFF !important;
     float: left;
