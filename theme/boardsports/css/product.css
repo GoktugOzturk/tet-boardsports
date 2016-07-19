@@ -94,6 +94,15 @@
     border-left: 1px solid #979797;
 }
 
+.shipping-cost{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.shipping-cost span{
+    color: #838383;
+}
+
 .product-info .nav li {
     display: table-cell;
     width: 1%;
