@@ -647,6 +647,30 @@ footer h3 {
     background-position: -91px -92px;
 }
 
+.breadcrumbs {
+    font-size: 13px;
+    color: #838383;
+    margin-bottom: 30px;
+}
+
+.breadcrumbs div {
+    display: inline-block;
+    font-weight: 400;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.breadcrumbs div a {
+    font-size: 13px;
+    color: #838383;
+    font-weight: 400;
+}
+
+.breadcrumbs div:after {
+    content: "›";
+    margin-left: 5px;
+}
+
 @media only screen and (max-width: 767px) {
     .widgetProductList .product-image,
     .widgetProductList .badges .badge,
