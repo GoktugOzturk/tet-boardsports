@@ -37,8 +37,13 @@ $(function () {
     });
 
     $('.panel-heading a').click(function () {
-        $('.panel-heading').removeClass('active');
-        $(this).parents('.panel-heading').addClass('active');
+        panel = $(this).parents('.panel-heading');
+        if (panel.hasClass('active')) {
+            panel.removeClass('active');
+        } else {
+            $('.panel-heading').removeClass('active');
+            panel.addClass('active');
+        }
     });
 
 });
