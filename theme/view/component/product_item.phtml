@@ -24,7 +24,7 @@
             <div class="old-price"><?= icms::format_money($product->obProduct->getBasePrice()) ?></div>
         <? } ?>
         <div class="price"><?= icms::format_money($product->obProduct->getSalePrice()) ?></div>
-        <a class="addToBasket" onclick="addToCart('<?= $product->obProduct->product_id ?>', '1', '<?= $product->from ?>')" href="javascript:"><span
+        <a class="addToCart" onclick="addToCart('<?= $product->obProduct->product_id ?>', '1', '<?= $product->from ?>')" href="javascript:"><span
                 class="glyphicon glyphicon-shopping-cart"></span></a>
     </div>
     <div class="badges">
@@ -52,7 +52,7 @@
         <? } ?>
         <? if ($product->obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
             <div class="badge new-product">
-                <div class="option"><span class="text">YENİ ÜRÜN</span></div>
+                <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
             </div>
         <? } ?>
     </div>

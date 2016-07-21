@@ -48,16 +48,24 @@
     },
     "blockZones": {
       "footer": {
+        "page": "All",
         "title": "Footer Alanı",
         "description": "Bu alan site genelinde tüm sayfaların altında görünür"
       },
       "homePage": {
+        "page": "Home",
         "title": "Ana Sayfa",
         "description": "Bu alan anasayfa tasarımını özelleştirmenizi sağlar"
       },
       "productUnder": {
+        "page": "Product",
         "title": "Ürün Detay Sayfası",
         "description": "Ürün detay sayfalarında ürün açıklamalarının altındaki alanda görünecek öğelerin özelleştirilmesini sağlar"
+      },
+      "categoryTop": {
+        "page": "Category",
+        "title": "Kategori Sayfası Navigasyon Altı",
+        "description": "Kategori sayfalarında navigasyon altına eklenecek banner, açıklama gibi öğelerin özelleştirilmesini sağlar"
       }
     },
     "productPhoto": {

@@ -79,7 +79,8 @@
                                         <span class="old-price"><?= icms::format_money($product->getBasePrice()) ?></span>
                                     <? } ?>
                                     <span class="price"><?= icms::format_money($product->getSalePrice()) ?></span>
-                                    <a href="javascript:void(0);" onclick="" class="addToBasket"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                                    <a href="javascript:" onclick="addToCart('<?= $product->product_id ?>', '1', '')" class="addToCart"><span
+                                            class="glyphicon glyphicon-shopping-cart"></span></a>
                                 <? } ?>
                             </div>
                             <div class="badges">
@@ -100,7 +101,7 @@
                                 <? } ?>
                                 <? if ($product->hasBadge(ob_product::BADGE_NEW)) { ?>
                                     <div class="badge new-product">
-                                        <div class="option"><span class="text">YENİ ÜRÜN</span></div>
+                                        <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
                                     </div>
                                 <? } ?>
                             </div>

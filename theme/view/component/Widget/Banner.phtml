@@ -8,11 +8,17 @@ if ($order == 'V') {
 } else {
     $col = 12 / count($banners);
 }
-?>
-<div class="row">
+if ($col == 12) {
+    foreach ($banners as $key => $banner) {
+        echo image::getBannerHtml($banner);
+    }
+} else {
+    ?>
+    <div class="row">
     <? foreach ($banners as $key => $banner) { ?>
         <div class="col-md-<?= $col ?>">
             <?= image::getBannerHtml($banner) ?>
         </div>
     <? } ?>
-</div>
+    </div><?
+}

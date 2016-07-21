@@ -108,7 +108,7 @@
                 </div>
             <? } elseif ($hasAvailableShoppingCheck) { ?>
                 <div class="detailsArea clearfix text-center">
-                    <span class="campaignText">ALIŞVERİŞ ÇEKİNİZİ KULLANMAYI UNUTMAYIN</span>
+                    <span class="campaignText">Alışveriş çekinizi kullanmayı unutmayın</span>
                 </div>
             <? } ?>
             <div class="badges">
@@ -130,7 +130,7 @@
                 <? } ?>
                 <? if ($obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
                     <div class="badge new-product">
-                        <div class="option"><span class="text">YENİ ÜRÜN</span></div>
+                        <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
                     </div>
                 <? } ?>
             </div>
@@ -144,7 +144,12 @@
                 <div class="product-installment">
                     Peşin Fiyatına <br><span>6 x 25,82 TL</span>
                 </div>
-            </div><!-- #product-detail#-->
+                <? if (!$obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
+                    <div class="shipping-cost">
+                        <span>KARGO ÜCRETİ:</span> <?= icms::format_money($obProduct->getShippingCost()) ?>
+                    </div>
+                <? } ?>
+            </div>
             <div class="clearfix">
                 <div class="product-piece">
                     <a href="javascript:;" onclick="quantity('#productQuantity','down')">-</a>
@@ -160,11 +165,6 @@
                     <span class="glyphicon glyphicon-shopping-cart"></span>SEPETE EKLE
                 </a>
             </div>
-            <? if (!$obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
-                <div class="shipping-cost">
-                    KARGO ÜCRETİ: <?= icms::format_money($obProduct->getShippingCost()) ?>
-                </div>
-            <? } ?>
         <? } else { ?>
             <div class="detailsAreaCart text-center">
                 <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>

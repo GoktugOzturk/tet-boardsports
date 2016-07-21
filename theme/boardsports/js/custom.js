@@ -35,9 +35,8 @@ $(function () {
     $(".opener").click(function () {
         $(this).toggleClass("active").closest("li").find(".drop-down").toggleClass("active");
     });
-
     $('.panel-heading a').click(function () {
-        panel = $(this).parents('.panel-heading');
+        var panel = $(this).parents('.panel-heading');
         if (panel.hasClass('active')) {
             panel.removeClass('active');
         } else {
@@ -45,5 +44,4 @@ $(function () {
             panel.addClass('active');
         }
     });
-
 });

@@ -8,9 +8,13 @@
     <?= view::showMessages('class="messageBox container" style="display:none"') ?>
     <div class="container">
         <? if (view::has_blocks()) { ?>
-            <div class="row">
+            <div class="row mb30">
                 <? view::show_blocks("col-xs-12 col-md-3 col-sm-3") ?>
-                <? view::show_contents("col-xs-12 col-sm-9 col-md-9") ?>
+                <article class="col-xs-12 col-sm-9 col-md-9">
+                    <section>
+                        <? view::show_contents() ?>
+                    </section>
+                </article>
             </div>
         <? } else { ?>
             <? view::show_contents() ?>

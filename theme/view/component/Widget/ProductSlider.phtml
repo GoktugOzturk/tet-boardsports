@@ -22,29 +22,17 @@
 <script>
     $(document).ready(function () {
         $('#<?=$id?> .owl-carousel').owlCarousel({
-            itemsCustom: [
-                [0, 1],
-                [450, 2],
-                [600, 2],
-                [700, 2],
-                [1000, 2],
-                [1200, 4],
-                [1400, 4],
-                [1600, 4]
-            ],
-            navigation: true, // Show next and prev buttons
+            responsiveClass: true,
+            nav: true,
+            responsive: {
+                0: {items: 1, nav: false},
+                481: {items: 3},
+                993: {items: 4}
+            },
             slideSpeed: 300,
             paginationSpeed: 400,
-            singleItem: false,
-            navigationText: ['<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
+            navText: ['<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>',
                 '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>']
-
-            // "singleItem:true" is a shortcut for:
-            // items : 1,
-            // itemsDesktop : false,
-            // itemsDesktopSmall : false,
-            // itemsTablet: false,
-            // itemsMobile : false
         });
     });
 </script>
