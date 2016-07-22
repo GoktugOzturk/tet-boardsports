@@ -1,9 +1,10 @@
 <?
 /**
- * @var \advertisement_model[]    $banners
  * @var \advertisement_zone_model $zone
+ * @var \advertisement_model[]    $banners
  * @var bool                      $lazyLoad
  * @var string                    $id
+ * @var array                     $data
  */
 ?>
 <div id="<?= $id ?>" class="slider">
@@ -18,16 +19,19 @@
 <script>
     $(function () {
         $('#<?= $id ?> .owl-carousel').owlCarousel({
-            loop: true,
-            autoplay: true,
+            loop: <?=$data['owl-loop'] ?>,
+            dots: <?=$data['owl-dots'] ?>,
+            nav: <?=$data['owl-nav'] ?>,
+            navText: <?=(!empty($data['owl-navText']) ? $data['owl-navText'] :
+            '[\'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>\', \'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>\']') ?>,
+            autoplay: <?=(count($banners) > 1 ? $data['owl-autoplay'] : 'false') ?>,
+            autoplayTimeout: <?=$data['owl-autoplayTimeout'] ?>,
+            autoplayHoverPause: <?=$data['owl-autoplayHoverPause'] ?>, // Stops autoplay
             items: 1,
-            navigation: false, // Show next and prev buttons
-            autoplayHoverPause: true, // Stops autoplay
             slideSpeed: 300,
             paginationSpeed: 400,
-            <? if ($lazyLoad) { ?>lazyLoad : true,<? } ?>
+            <? if ($lazyLoad) { ?>lazyLoad: true,<? } ?>
             singleItem: true
-
         });
     });
 </script>
