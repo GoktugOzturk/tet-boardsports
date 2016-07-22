@@ -36,7 +36,7 @@
         "limit": 1,
         "sort_by": "Random"
       },
-      "HomePageRightRectange": {
+      "HomePageRightRectangle": {
         "description": "Anasayfada sağdaki dikdörtgen banner",
         "group": "Home",
         "type": "Banner",
@@ -44,6 +44,14 @@
         "height": 275,
         "limit": 1,
         "sort_by": "Random"
+      },
+      "CategoryTop": {
+        "description": "Kategori sayfalarında menüden sonra görünen banner",
+        "group": "Category",
+        "type": "Banner",
+        "width": 1140,
+        "limit": 3,
+        "sort_by": "Order"
       }
     },
     "blockZones": {
