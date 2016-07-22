@@ -162,6 +162,10 @@
     display: none;
 }
 
+.productImages {
+    position: relative;
+}
+
 .productImages img {
     width: 100%;
 }
