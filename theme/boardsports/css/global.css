@@ -32,6 +32,18 @@ body {
     padding: 10px 0;
 }
 
+.nav-logo {
+    width: 100px;
+    margin: 18px 15px 0 0;
+    display: none;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-logo.active {
+    display: block;
+}
+
 /* nav-black-blue */
 #boardnav.black-blue {
     background-color: #333;
@@ -716,6 +728,7 @@ footer h3 {
     color: #838383;
     font-weight: 400;
 }
+
 /*
 .breadcrumbs div:after {
     content: "›";
