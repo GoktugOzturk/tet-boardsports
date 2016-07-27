@@ -887,7 +887,9 @@ footer h3 {
     #user-menu-wrapper {
         display: none !important;
     }
+}
 
+@media only screen and (max-width: 1200px) {
     .cart .acc-btn {
         font-size: 0;
     }
@@ -896,5 +898,3 @@ footer h3 {
         font-size: 14px;
     }
 }
-
-
