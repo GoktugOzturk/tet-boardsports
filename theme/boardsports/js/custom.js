@@ -18,11 +18,13 @@ $(function () {
             navbar.addClass('navbar-fixed-top');
             if ($(window).innerWidth() > 767) {
                 navbar.find('.acc-btn').addClass('active');
+                navbar.find('.nav-logo').addClass('active');
             }
         } else {
             navbar.removeClass('navbar-fixed-top');
             if ($(window).innerWidth() > 767) {
                 navbar.find('.acc-btn').removeClass('active');
+                navbar.find('.nav-logo').removeClass('active');
             }
         }
         if (initMobile == false && $(window).innerWidth() < 1000) {
