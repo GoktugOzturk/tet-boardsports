@@ -194,7 +194,8 @@
                     <div class="product-piece">
                         <a href="javascript:;" onclick="quantity('#productQuantity','down')">-</a>
                         <div>
-                            <input name="quantity" id="productQuantity" class="text-center" value="1" type="text" min="1" max="9999" onblur="quantity($(this))">
+                            <input name="quantity" id="productQuantity" class="text-center" value="1" type="text" min="1" max="<?= $obProduct->saleableProductCount() ?>"
+                                onblur="quantity($(this))">
                             <label for="productQuantity">ADET</label>
                         </div>
                         <a href="javascript:;" onclick="quantity('#productQuantity','up')">+</a>
