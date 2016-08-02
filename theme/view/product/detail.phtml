@@ -66,6 +66,29 @@
     </div><!-- #col# -->
     <div class="col-md-6 col-sm-6 col-xs-12">
         <h1 class="product-title"><?= $obProduct->full_name ?></h1>
+        <div class="productbadges badges">
+            <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
+                <div class="badge free-cargo">
+                    <div class="option"><span class="sprite"></span><span class="text">ÜCRETSİZ KARGO</span></div>
+                </div>
+            <? } ?>
+            <? if ($obProduct->hasBadge(ob_product::BADGE_FAST_CARGO)) { ?>
+                <div class="badge fast-cargo">
+                    <div class="option"><span class="sprite"></span><span
+                            class="text"><?= ($obProduct->warehouse_stock <= 5 ? 'SON ' . $obProduct->warehouse_stock . ' ÜRÜN' : 'HIZLI KARGO') ?></span></div>
+                </div>
+            <? } ?>
+            <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
+                <div class="badge discount">
+                    <div class="option"><span class="sprite"></span><span class="text">%<?= $obProduct->getDiscountPercent() ?></span></div>
+                </div>
+            <? } ?>
+            <? if ($obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
+                <div class="badge new-product">
+                    <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
+                </div>
+            <? } ?>
+        </div>
         <div class="star">
             <div class="productRating" style="cursor: pointer;"></div>
             &nbsp; <span><?= number_format($rating->getScore(), 1) ?></span>
@@ -89,7 +112,7 @@
         </div><!-- #star# -->
         <? if (count($groupProperties)) { ?>
             <? foreach ($groupProperties as $propertyId => $propertyData) { ?>
-                <div class="propertyBox groupProperty mb30">
+                <div class="propertyBox groupProperty">
                     <label><?= $propertyData['name'] ?></label>
                     <ul class="nav nav-pills">
                         <? foreach ($propertyData['options'] AS $optionId => $optionData) { ?>
@@ -135,7 +158,7 @@
                 <? if ($hasVariants) { ?>
                     <form role="form" action="<?= $mainProductUrl ?>" method="POST" id="formVariant" data-rel="ajax" data-callback="propertyFormCallback">
                         <? foreach ($variantProperties as $propertyId => $propertyData) { ?>
-                            <div class="propertyBox variantProperty mb30">
+                            <div class="propertyBox variantProperty">
                                 <input type="hidden" name="property[<?= $propertyId ?>]" value="<?= $propertyData['selected'] ?>">
                                 <label><?= $propertyData['name'] ?></label>
                                 <ul class="nav nav-pills">
@@ -148,35 +171,12 @@
                         <? } ?>
                     </form>
                 <? } ?>
-                <div class="badges">
-                    <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
-                        <div class="badge free-cargo">
-                            <div class="option"><span class="sprite"></span><span class="text">ÜCRETSİZ KARGO</span></div>
-                        </div>
-                    <? } ?>
-                    <? if ($obProduct->hasBadge(ob_product::BADGE_FAST_CARGO)) { ?>
-                        <div class="badge fast-cargo">
-                            <div class="option"><span class="sprite"></span><span
-                                    class="text"><?= ($obProduct->warehouse_stock <= 5 ? 'SON ' . $obProduct->warehouse_stock . ' ÜRÜN' : 'HIZLI KARGO') ?></span></div>
-                        </div>
-                    <? } ?>
-                    <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
-                        <div class="badge discount">
-                            <div class="option"><span class="sprite"></span><span class="text">%<?= $obProduct->getDiscountPercent() ?></span></div>
-                        </div>
-                    <? } ?>
-                    <? if ($obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
-                        <div class="badge new-product">
-                            <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
-                        </div>
-                    <? } ?>
-                </div>
                 <div class="product-detail">
                     <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
                         <div class="old-price"><?= icms::format_money($obProduct->getBasePrice(), null) ?> <span class="tl">TL</span></div>
                     <? } ?>
                     <div class="product-price">
-                        <?= icms::format_money($obProduct->getSalePrice(), null) ?><span class="tl">TL</span>
+                        <?= icms::format_money($obProduct->getSalePrice(), null) ?><span class="tl"> TL</span>
                     </div>
                     <? if ($maxInstallmentCount > 1) { ?>
                         <div class="product-installment">
@@ -207,7 +207,7 @@
                 </div>
             </div>
         <? } else { ?>
-            <div class="detailsAreaCart text-center">
+            <div class="detailsAreaCart">
                 <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
                 <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
                 <a class="stockReminder btn btn-info" href="javascript:" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>

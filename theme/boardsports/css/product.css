@@ -14,14 +14,18 @@
 }
 
 .product-detail {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .product-price {
     font-size: 36px;
     line-height: 36px;
-    font-weight: 300;
+    font-weight: 400;
     display: inline-block;
+}
+
+.product-price span {
+    font-size: 25px;
 }
 
 .old-price {
@@ -207,7 +211,13 @@
 }
 
 .star {
-    margin-bottom: 30px;
+    float: right;
+}
+
+.propertyBox {
+    border-bottom: 1px solid #f2f2f2;
+    margin: 15px 0;
+    padding-bottom: 15px;
 }
 
 /* widgets */
