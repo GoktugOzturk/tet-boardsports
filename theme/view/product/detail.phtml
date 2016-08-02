@@ -110,6 +110,7 @@
                 });
             </script>
         </div><!-- #star# -->
+        <div class="clearfix"></div>
         <? if (count($groupProperties)) { ?>
             <? foreach ($groupProperties as $propertyId => $propertyData) { ?>
                 <div class="propertyBox groupProperty">
@@ -207,7 +208,6 @@
                 </div>
             </div>
         <? } else { ?>
-            <div class="clearfix"></div>
             <div class="detailsAreaCart">
                 <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
                 <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
