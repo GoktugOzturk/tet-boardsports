@@ -1,8 +1,11 @@
 <?
 /**
  * @var ob_product                           $obProduct
+ * @var array                                $groupProperties
+ * @var bool                                 $hasVariants
+ * @var array                                $variantProperties
  * @var array                                $productPhotos
- * @var string                               $shareUrl
+ * @var string                               $mainProductUrl
  * @var string                               $FacebookAppID
  * @var string                               $TwitterAccount
  * @var \TeknoETicaret\Object\Product\Rating $rating
@@ -13,6 +16,8 @@
  * @var string                               $productDetails
  * @var array                                $productHasProperty
  * @var stdClass                             $reviewData
+ * @var float                                $minInstallmentAmount
+ * @var int                                  $maxInstallmentCount
  * @var string                               $semanticData
  * @var array                                $widgets
  */
@@ -22,7 +27,7 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="row">
             <!-- thumbnails -->
-            <div class="col-md-2 noCarousel" id="thumbnailContainer">
+            <div class="col-md-2 <?= (count($productPhotos) < 7 ? "noCarousel" : "") ?>" id="thumbnailContainer">
                 <a href="javascript:" onclick="thumbnailCarouselPrev()" class="sliderArrow arrowUp"><i class="glyphicon glyphicon-menu-up"></i></a>
                 <div id="thumbnailCarousel">
                     <? foreach ($productPhotos as $key => $photo) { ?>
@@ -35,7 +40,10 @@
             <!-- #thumbnails# -->
             <div class="col-md-10">
                 <div class="productImages">
-                    <img id="activeImage" src="<?= $obProduct->getPhoto("normal") ?>" data-zoom-image="<?= $obProduct->getPhoto("big") ?>"/>
+                    <? foreach ($productPhotos as $key => $photo) { ?>
+                        <img id="activeImage" src="<?= $photo['normal'] ?>" data-zoom-image="<?= $photo['big'] ?>"/>
+                        <? break; ?>
+                    <? } ?>
                     <script>
                         $(function () {
                             $("#activeImage").elevateZoom({
@@ -79,91 +87,124 @@
                 });
             </script>
         </div><!-- #star# -->
-        <? if ($obProduct->is_saleable) { ?>
-            <? if ($hasVisiblePriceCampaign) { ?>
-                <div class="detailsArea clearfix">
-                    <? if ($obProduct->hasBadge(ob_product::BADGE_HOT_DEAL)) { ?>
-                        <span class="pull-left campaignText">FIRSAT KAÇMAK ÜZERE
-                            <? if ($obProduct->sale_price > ($obProduct->getSalePrice() * 1.10)) { ?>
-                                <br><span>Kampanya süresi dolduktan sonra bu ürün <?= icms::format_money($obProduct->sale_price) ?>'dan satışa sunulacaktır.</span>
-                            <? } else { ?>
-                                <br><span>Fırsatı kaçırmayın!</span>
-                            <? } ?>
-                                </span>
-                    <? } else { ?>
-                        <span class="pull-left campaignText">KAMPANYALI ÜRÜN
-                            <? if ($obProduct->sale_price > ($obProduct->getSalePrice() * 1.10)) { ?>
-                                <br><span>Kampanya süresi dolduktan sonra bu ürün <?= icms::format_money($obProduct->sale_price) ?>'dan satışa sunulacaktır.</span>
-                            <? } else { ?>
-                                <br><span>Fırsatı kaçırmayın!</span>
-                            <? } ?>
-                            </span>
-                    <? } ?>
-                    <span class="pull-right campaignTime">00:00:00:00</span>
-                    <script>
-                        $(function () {
-                            $('.campaignTime').countdown(new Date(<?= date('Y, m-1, d, H, i, s', strtotime($obProduct->priceCampaign->end_time)) ?>), countDownFormat);
-                        });
-                    </script>
-                </div>
-            <? } elseif ($hasAvailableShoppingCheck) { ?>
-                <div class="detailsArea clearfix text-center">
-                    <span class="campaignText">Alışveriş çekinizi kullanmayı unutmayın</span>
+        <? if (count($groupProperties)) { ?>
+            <? foreach ($groupProperties as $propertyId => $propertyData) { ?>
+                <div class="propertyBox groupProperty mb30">
+                    <label><?= $propertyData['name'] ?></label>
+                    <ul class="nav nav-pills">
+                        <? foreach ($propertyData['options'] AS $optionId => $optionData) { ?>
+                            <li <?= ($propertyData['selected'] == $optionId ? 'class="active"' : '') ?>><a href="<?= $optionData['url'] ?>"><?= $optionData['name'] ?></a></li>
+                        <? } ?>
+                    </ul>
                 </div>
             <? } ?>
-            <div class="badges">
-                <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
-                    <div class="badge free-cargo">
-                        <div class="option"><span class="sprite"></span><span class="text">ÜCRETSİZ KARGO</span></div>
+        <? } ?>
+        <? if ($obProduct->is_saleable) { ?>
+            <div id="productData">
+                <? if ($hasVisiblePriceCampaign) { ?>
+                    <div class="detailsArea clearfix">
+                        <? if ($obProduct->hasBadge(ob_product::BADGE_HOT_DEAL)) { ?>
+                            <span class="pull-left campaignText">FIRSAT KAÇMAK ÜZERE
+                                <? if ($obProduct->sale_price > ($obProduct->getSalePrice() * 1.10)) { ?>
+                                    <br><span>Kampanya süresi dolduktan sonra bu ürün <?= icms::format_money($obProduct->sale_price) ?>'dan satışa sunulacaktır.</span>
+                                <? } else { ?>
+                                    <br><span>Fırsatı kaçırmayın!</span>
+                                <? } ?>
+                        </span>
+                        <? } else { ?>
+                            <span class="pull-left campaignText">KAMPANYALI ÜRÜN
+                                <? if ($obProduct->sale_price > ($obProduct->getSalePrice() * 1.10)) { ?>
+                                    <br><span>Kampanya süresi dolduktan sonra bu ürün <?= icms::format_money($obProduct->sale_price) ?>'dan satışa sunulacaktır.</span>
+                                <? } else { ?>
+                                    <br><span>Fırsatı kaçırmayın!</span>
+                                <? } ?>
+                        </span>
+                        <? } ?>
+                        <span class="pull-right campaignTime">00:00:00:00</span>
+                        <script>
+                            $(function () {
+                                $('.campaignTime').countdown(new Date(<?= date('Y, m-1, d, H, i, s', strtotime($obProduct->priceCampaign->end_time)) ?>), countDownFormat);
+                            });
+                        </script>
+                    </div>
+                <? } elseif ($hasAvailableShoppingCheck) { ?>
+                    <div class="detailsArea clearfix text-center">
+                        <span class="campaignText">Alışveriş çekinizi kullanmayı unutmayın</span>
                     </div>
                 <? } ?>
-                <? if ($obProduct->hasBadge(ob_product::BADGE_FAST_CARGO)) { ?>
-                    <div class="badge fast-cargo">
-                        <div class="option"><span class="sprite"></span><span
-                                class="text"><?= ($obProduct->warehouse_stock <= 5 ? 'SON ' . $obProduct->warehouse_stock . ' ÜRÜN' : 'HIZLI KARGO') ?></span></div>
-                    </div>
+                <? if ($hasVariants) { ?>
+                    <form role="form" action="<?= $mainProductUrl ?>" method="POST" id="formVariant" data-rel="ajax" data-callback="propertyFormCallback">
+                        <? foreach ($variantProperties as $propertyId => $propertyData) { ?>
+                            <div class="propertyBox variantProperty mb30">
+                                <input type="hidden" name="property[<?= $propertyId ?>]" value="<?= $propertyData['selected'] ?>">
+                                <label><?= $propertyData['name'] ?></label>
+                                <ul class="nav nav-pills">
+                                    <? foreach ($propertyData['options'] AS $optionId => $optionName) { ?>
+                                        <li <?= ($propertyData['selected'] == $optionId ? 'class="active"' : '') ?> id="property-<?= $propertyId ?>-<?= $optionId ?>"><a
+                                                href="javascript:" onclick="chooseProperty('<?= $propertyId ?>', '<?= $optionId ?>')"><?= $optionName ?></a></li>
+                                    <? } ?>
+                                </ul>
+                            </div>
+                        <? } ?>
+                    </form>
                 <? } ?>
-                <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
-                    <div class="badge discount">
-                        <div class="option"><span class="sprite"></span><span class="text">%<?= $obProduct->getDiscountPercent() ?></span></div>
-                    </div>
-                <? } ?>
-                <? if ($obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
-                    <div class="badge new-product">
-                        <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
-                    </div>
-                <? } ?>
-            </div>
-            <div class="product-detail">
-                <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
-                    <div class="old-price"><?= icms::format_money($obProduct->getBasePrice(), null) ?> <span class="tl">TL</span></div>
-                <? } ?>
-                <div class="product-price">
-                    <?= icms::format_money($obProduct->getSalePrice(), null) ?><span class="tl">TL</span>
+                <div class="badges">
+                    <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
+                        <div class="badge free-cargo">
+                            <div class="option"><span class="sprite"></span><span class="text">ÜCRETSİZ KARGO</span></div>
+                        </div>
+                    <? } ?>
+                    <? if ($obProduct->hasBadge(ob_product::BADGE_FAST_CARGO)) { ?>
+                        <div class="badge fast-cargo">
+                            <div class="option"><span class="sprite"></span><span
+                                    class="text"><?= ($obProduct->warehouse_stock <= 5 ? 'SON ' . $obProduct->warehouse_stock . ' ÜRÜN' : 'HIZLI KARGO') ?></span></div>
+                        </div>
+                    <? } ?>
+                    <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
+                        <div class="badge discount">
+                            <div class="option"><span class="sprite"></span><span class="text">%<?= $obProduct->getDiscountPercent() ?></span></div>
+                        </div>
+                    <? } ?>
+                    <? if ($obProduct->hasBadge(ob_product::BADGE_NEW)) { ?>
+                        <div class="badge new-product">
+                            <div class="option"><span class="sprite"></span><span class="text">YENİ ÜRÜN</span></div>
+                        </div>
+                    <? } ?>
                 </div>
-                <div class="product-installment">
-                    Peşin Fiyatına <br><span>6 x 25,82 TL</span>
-                </div>
-                <? if (!$obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
-                    <div class="shipping-cost">
-                        <span>KARGO ÜCRETİ:</span> <?= icms::format_money($obProduct->getShippingCost()) ?>
+                <div class="product-detail">
+                    <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
+                        <div class="old-price"><?= icms::format_money($obProduct->getBasePrice(), null) ?> <span class="tl">TL</span></div>
+                    <? } ?>
+                    <div class="product-price">
+                        <?= icms::format_money($obProduct->getSalePrice(), null) ?><span class="tl">TL</span>
                     </div>
-                <? } ?>
-            </div>
-            <div class="clearfix">
-                <div class="product-piece">
-                    <a href="javascript:;" onclick="quantity('#productQuantity','down')">-</a>
-                    <div>
-                        <input name="quantity" id="productQuantity" class="text-center" value="1" type="text" min="1" max="9999" onblur="quantity($(this))">
-                        <label for="productQuantity">ADET</label>
-                    </div>
-                    <a href="javascript:;" onclick="quantity('#productQuantity','up')">+</a>
+                    <? if ($maxInstallmentCount > 1) { ?>
+                        <div class="product-installment">
+                            <span><?= icms::format_money($minInstallmentAmount) ?>'den</span><br>Başlayan Fiyatlarla
+                        </div>
+                    <? } ?>
+                    <? if (!$obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
+                        <div class="shipping-cost">
+                            <span>KARGO ÜCRETİ:</span> <?= icms::format_money($obProduct->getShippingCost()) ?>
+                        </div>
+                    <? } ?>
                 </div>
-                <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
-                <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
-                <a href="javascript:;" class="gotoBasket acc-btn" onclick="addToCart($('#productId').val(), $('#productQuantity').val(), $('#fromSource').val());">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>SEPETE EKLE
-                </a>
+                <div class="clearfix">
+                    <div class="product-piece">
+                        <a href="javascript:;" onclick="quantity('#productQuantity','down')">-</a>
+                        <div>
+                            <input name="quantity" id="productQuantity" class="text-center" value="1" type="text" min="1" max="9999" onblur="quantity($(this))">
+                            <label for="productQuantity">ADET</label>
+                        </div>
+                        <a href="javascript:;" onclick="quantity('#productQuantity','up')">+</a>
+                    </div>
+                    <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
+                    <input type="hidden" id="variantType" value="<?= $obProduct->variant_type ?>"/>
+                    <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
+                    <a href="javascript:;" class="gotoBasket acc-btn" onclick="addToCart($('#productId').val(), $('#productQuantity').val(), $('#fromSource').val());">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>SEPETE EKLE
+                    </a>
+                </div>
             </div>
         <? } else { ?>
             <div class="detailsAreaCart text-center">
@@ -375,6 +416,40 @@
         <div class="tab-pane fade mt" id="tabInstallments">Yükleniyor...</div>
         <div class="tab-pane fade mt" id="tabWarrantyReturn">Yükleniyor...</div>
     </div><!-- #tab-content# -->
+    <script type="text/javascript">
+        $(function () {
+            $(".stockReminder").click(function (e) {
+                e.preventDefault();
+                $(".stockAlertMsg").remove();
+                $.post("/product/add_stock_alert", {'product_id': '<?= $obProduct->product_id ?>'}, function (r) {
+                    if (r.Status === 'OK') {
+                        $(".stockAlertBox").html('<div class="alert alert-success" role="alert">' + r.Message + '</div>');
+                    } else {
+                        $(".stockAlertBox").html('<div class="alert alert-warning stockAlertMsg" role="alert">' + r.Message + '</div>');
+                    }
+                }, 'json');
+            });
+            $(".commentVote").click(function (e) {
+                var $that = $(this);
+                e.preventDefault();
+                $.post("/product/reviewVote", {review_id: $that.data('id'), vote_type: $that.data('type')}, function (r) {
+                    if (r.Status === 'OK') {
+                        $that.parents(".isCommentHelpful").html(r.Message);
+                    } else {
+                        alert(r.Message);
+                    }
+                }, 'json');
+            });
+            var detailImages = $("#tabDetails").find("tr>td>img");
+            if (detailImages && detailImages.length > 0) {
+                $.each(detailImages, function (key, image) {
+                    if ($(image).parent().parent().children("td").length > 1) {
+                        $(image).addClass("halfSize");
+                    }
+                });
+            }
+        });
+    </script>
 </div><!-- #product-info# -->
 <!-- widget -->
 <?= \TeknoETicaret\Widget\Block::addBlock('productUnder',

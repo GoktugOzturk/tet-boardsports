@@ -121,7 +121,7 @@
 .product-info .nav > li.active > a,
 .product-info .nav > li > a:hover,
 .product-info .nav > li > a:focus {
-    background-color: #1aabe4;
+    background-color: #1AABE4;
     color: #FFF;
 }
 
@@ -160,6 +160,30 @@
 
 #thumbnailContainer.noCarousel .sliderArrow {
     display: none;
+}
+
+#thumbnailCarousel {
+    height: 420px;
+    overflow: hidden
+}
+
+#thumbnailCarousel a {
+    display: block;
+    border: 1px solid #DDF3FF;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    padding: 2px 1px;
+    margin-bottom: 5px;
+}
+
+#thumbnailCarousel a:hover {
+    border: 1px solid #1AABE4;
+}
+
+#thumbnailCarousel .active {
+    border: 1px solid #1AABE4;
 }
 
 .productImages {
@@ -248,6 +272,14 @@
 .widgetProductList .product-details .price {
     font-size: 18px;
     line-height: 30px;
+}
+
+.addedDetails {
+    margin-bottom: 30px;
+}
+
+.addedImage img {
+    max-width: 100%;
 }
 
 /* #widgets #*/
