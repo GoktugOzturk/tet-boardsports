@@ -85,6 +85,28 @@
         "normal": 445,
         "mail": 300
       }
+    },
+    "logos": {
+      "logo": {
+        "name": "Genel Site Logosu",
+        "width": 150,
+        "height": 140
+      },
+      "logo2x": {
+        "name": "Genel Site Logosu (2x)",
+        "width": 300,
+        "height": 280
+      },
+      "fixedNav": {
+        "name": "Sabit Navigasyonda Görünen Logo",
+        "width": 150,
+        "height": 48
+      },
+      "fixedNav2x": {
+        "name": "Sabit Navigasyonda Görünen Logo (2x)",
+        "width": 300,
+        "height": 96
+      }
     }
   }
 }

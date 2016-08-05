@@ -5,6 +5,8 @@
  * @var bool                                 $hasVariants
  * @var array                                $variantProperties
  * @var array                                $productPhotos
+ * @var string                               $mainProductName
+ * @var int                                  $mainProductId
  * @var string                               $mainProductUrl
  * @var string                               $FacebookAppID
  * @var string                               $TwitterAccount
@@ -65,7 +67,7 @@
         </div><!-- #row# -->
     </div><!-- #col# -->
     <div class="col-md-6 col-sm-6 col-xs-12">
-        <h1 class="product-title"><?= $obProduct->full_name ?></h1>
+        <h1 class="product-title"><?= $mainProductName ?></h1>
         <div class="productbadges badges">
             <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
                 <div class="badge free-cargo">
@@ -97,7 +99,7 @@
                     $('.productRating').raty({
                         score: <?= $rating->getScore() ?>,
                         click: function (score) {
-                            $.post('/product/saveRating', {product_id: '<?=$obProduct->product_id?>', rating_score: score}, function (data) {
+                            $.post('/product/saveRating', {product_id: '<?=$mainProductId ?>', rating_score: score}, function (data) {
                                 if (data.readonly) {
                                     $('.productRating').raty({readOnly: true, score: <?= $rating->getScore() ?>});
                                 }
@@ -123,8 +125,24 @@
                 </div>
             <? } ?>
         <? } ?>
-        <? if ($obProduct->is_saleable) { ?>
-            <div id="productData">
+        <div id="productData">
+            <? if ($hasVariants) { ?>
+                <form role="form" action="<?= $mainProductUrl ?>" method="POST" id="formVariant" data-rel="ajax" data-callback="propertyFormCallback">
+                    <? foreach ($variantProperties as $propertyId => $propertyData) { ?>
+                        <div class="propertyBox variantProperty">
+                            <input type="hidden" name="property[<?= $propertyId ?>]" value="<?= $propertyData['selected'] ?>">
+                            <label><?= $propertyData['name'] ?></label>
+                            <ul class="nav nav-pills">
+                                <? foreach ($propertyData['options'] AS $optionId => $optionName) { ?>
+                                    <li <?= ($propertyData['selected'] == $optionId ? 'class="active"' : '') ?> id="property-<?= $propertyId ?>-<?= $optionId ?>"><a
+                                            href="javascript:" onclick="chooseProperty('<?= $propertyId ?>', '<?= $optionId ?>')"><?= $optionName ?></a></li>
+                                <? } ?>
+                            </ul>
+                        </div>
+                    <? } ?>
+                </form>
+            <? } ?>
+            <? if ($obProduct->is_saleable) { ?>
                 <? if ($hasVisiblePriceCampaign) { ?>
                     <div class="detailsArea clearfix">
                         <? if ($obProduct->hasBadge(ob_product::BADGE_HOT_DEAL)) { ?>
@@ -155,22 +173,6 @@
                     <div class="detailsArea clearfix text-center">
                         <span class="campaignText">Alışveriş çekinizi kullanmayı unutmayın</span>
                     </div>
-                <? } ?>
-                <? if ($hasVariants) { ?>
-                    <form role="form" action="<?= $mainProductUrl ?>" method="POST" id="formVariant" data-rel="ajax" data-callback="propertyFormCallback">
-                        <? foreach ($variantProperties as $propertyId => $propertyData) { ?>
-                            <div class="propertyBox variantProperty">
-                                <input type="hidden" name="property[<?= $propertyId ?>]" value="<?= $propertyData['selected'] ?>">
-                                <label><?= $propertyData['name'] ?></label>
-                                <ul class="nav nav-pills">
-                                    <? foreach ($propertyData['options'] AS $optionId => $optionName) { ?>
-                                        <li <?= ($propertyData['selected'] == $optionId ? 'class="active"' : '') ?> id="property-<?= $propertyId ?>-<?= $optionId ?>"><a
-                                                href="javascript:" onclick="chooseProperty('<?= $propertyId ?>', '<?= $optionId ?>')"><?= $optionName ?></a></li>
-                                    <? } ?>
-                                </ul>
-                            </div>
-                        <? } ?>
-                    </form>
                 <? } ?>
                 <div class="product-detail">
                     <? if ($obProduct->hasBadge(ob_product::BADGE_DISCOUNT)) { ?>
@@ -207,18 +209,18 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>SEPETE EKLE
                     </a>
                 </div>
-            </div>
-        <? } else { ?>
-            <div class="detailsAreaCart">
-                <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
-                <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
-                <a class="stockReminder btn btn-info" href="javascript:" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    Gelince Haber Ver</a>
-            </div>
-            <div class="stockAlertBox">
-                Bu ürün geçici olarak temin edilemiyor.
-            </div>
-        <? } ?>
+            <? } else { ?>
+                <div class="stockAlertBox">
+                    Bu ürün geçici olarak temin edilemiyor.
+                </div>
+                <div class="detailsAreaCart">
+                    <input type="hidden" id="productId" value="<?= $obProduct->product_id ?>"/>
+                    <input type="hidden" id="fromSource" value="<?= (isset($_GET['from']) ? $_GET['from'] : '') ?>"/>
+                    <a class="stockReminder acc-btn" href="javascript:" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        Gelince Haber Ver</a>
+                </div>
+            <? } ?>
+        </div>
     </div><!-- #col# -->
     <div class="clearfix"></div>
     <div class="clearfix"></div>
@@ -239,7 +241,7 @@
             </a>
         </li>
         <li>
-            <a href="#tabInstallments" class="showInstallments" role="tab" data-toggle="tab" data-url="/product/get_installment_options/<?= $obProduct->product_id ?>">
+            <a href="#tabInstallments" class="showInstallments" role="tab" data-toggle="tab" data-url="/product/get_installment_options/<?= $mainProductId ?>">
                 TAKSİT SEÇENEKLERİ</a>
         </li>
         <li>
@@ -402,8 +404,8 @@
                             <div class="form-group">
                                 <label for="comment_text">Yorumunuz</label> <textarea id="comment_text" name="comment_text" class="form-control" rows="10"></textarea>
                             </div>
-                            <input type="hidden" name="product" value="<?= $obProduct->product_id ?>"/> <input type="hidden" name="redirect"
-                                value="<?= $_SERVER['REQUEST_URI'] ?>"/>
+                            <input type="hidden" name="product" value="<?= $mainProductId ?>"/>
+                            <input type="hidden" name="redirect" value="<?= $_SERVER['REQUEST_URI'] ?>"/>
                             <button type="submit" class="btn btn-warning mb">Yorumu Gönder</button>
                             <? /* <p style="font-size: 11px; color: #999;">yorum açıklaması</p> */ ?>
                         </form>
@@ -423,7 +425,7 @@
             $(".stockReminder").click(function (e) {
                 e.preventDefault();
                 $(".stockAlertMsg").remove();
-                $.post("/product/add_stock_alert", {'product_id': '<?= $obProduct->product_id ?>'}, function (r) {
+                $.post("/product/add_stock_alert", {'product_id': $('input#productId').val()}, function (r) {
                     if (r.Status === 'OK') {
                         $(".stockAlertBox").html('<div class="alert alert-success" role="alert">' + r.Message + '</div>');
                     } else {
@@ -432,11 +434,11 @@
                 }, 'json');
             });
             $(".commentVote").click(function (e) {
-                var $that = $(this);
+                var $this = $(this);
                 e.preventDefault();
-                $.post("/product/reviewVote", {review_id: $that.data('id'), vote_type: $that.data('type')}, function (r) {
+                $.post("/product/reviewVote", {review_id: $this.data('id'), vote_type: $this.data('type')}, function (r) {
                     if (r.Status === 'OK') {
-                        $that.parents(".isCommentHelpful").html(r.Message);
+                        $this.parents(".isCommentHelpful").html(r.Message);
                     } else {
                         alert(r.Message);
                     }
@@ -456,7 +458,7 @@
 <!-- widget -->
 <?= \TeknoETicaret\Widget\Block::addBlock('productUnder',
     array(
-        'productId' => $obProduct->product_id,
+        'productId' => $mainProductId,
         'categoryId' => $obProduct->category_id,
         'brandId' => $obProduct->brand_id,
     )

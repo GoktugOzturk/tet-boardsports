@@ -25,7 +25,7 @@
                 </div>
                 <div class="text-center">
                     <p class="text-center">Sitemize üye olmak için aşağıdaki formu doldurmanız yeterlidir.</p>
-                    <form novalidate="novalidate" class="form-horizontal" id="registerForm" role="form" action="/member/signup" method="post">
+                    <form novalidate="novalidate" class="form-horizontal" id="registerForm" role="form" action="/ajax/signup" method="post">
                         <input type="hidden" name="redirectTo" value="<?= $redirectTo ?>">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 mb15">
@@ -50,7 +50,7 @@
                                     <label> <input type="checkbox" id="subscription" name="subscription" checked="checked">Kampanyalar ile ilgili e-posta mesajları almak istiyorum.</label>
                                 </div>
                                 <div class="mb15 mt15">
-                                    <button type="submit" class="btn btn-primary noiseBg">Hesabımı Oluştur</button>
+                                    <button type="submit" class="btn btn-primary submitButton">Hesabımı Oluştur</button>
                                 </div>
                                 <div class="">
                                     Hesap oluşturarak <a class="b" href="javascript:" onclick="load_modal('/uyelik-sozlesmesi')" data-toggle="modal" data-target="#modalBox">üyelik
