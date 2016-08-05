@@ -1,17 +1,15 @@
 <?php
 /**
- * @var bool $halfLogin
+ * @var bool   $halfLogin
  * @var string $accountMail
- * @var string $b64
+ * @var string $redirectTo
  */
 ?>
 <div class="checkoutAccountBox">
     <div class="socialLogin mb30">
         <p class="text-center">Sosyal medya hesabınızı kullanarak giriş yapabilirsiniz.</p>
         <div class="text-center">
-            <button type="submit" onclick="window.location='/member/oauth/facebook/?b64=<?= $b64 ?>'" class="btn btn-primary buttonFacebook">Facebook ile Bağlan</button>
-            &nbsp;
-            <button type="submit" onclick="window.location='/member/oauth/google/?b64=<?= $b64 ?>'" class="btn btn-primary buttonGooglePlus">Google+ ile Bağlan</button>
+            <?= implode('', view::getLoginServices($redirectTo, ' ile Bağlan')) ?>
         </div>
     </div>
     <div class="row">
@@ -25,7 +23,7 @@
             <? } ?>
             <div id="loginBox" class="optionBox">
                 <form method="post" action="/ajax/signin" role="form" id="loginForm" class="form-horizontal">
-                    <input type="hidden" name="redirectTo" value="<?= $b64 ?>">
+                    <input type="hidden" name="redirectTo" value="<?= base64_encode($redirectTo) ?>">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <label for="LoginEmail">E-Posta Adresi:</label>
@@ -57,7 +55,7 @@
             <? if (!$halfLogin) { ?>
                 <div id="registerBox" class="optionBox">
                     <form method="post" action="/ajax/signup" role="form" id="registerForm" class="form-horizontal" novalidate="novalidate">
-                        <input type="hidden" name="redirectTo" value="<?= $b64 ?>">
+                        <input type="hidden" name="redirectTo" value="<?= base64_encode($redirectTo) ?>">
                         <div class="form-group">
                             <div class="col-xs-12 col-md-6">
                                 <label for="SignupName">Adınız:</label> <input type="text" id="SignupName" class="form-control" name="firstname">
@@ -95,7 +93,7 @@
                 </div>
                 <div id="guestAccountBox" class="optionBox">
                     <form method="post" action="/ajax/guestAccount" role="form" id="guestAccountForm" class="form-horizontal" novalidate="novalidate">
-                        <input type="hidden" name="redirectTo" value="<?= $b64 ?>">
+                        <input type="hidden" name="redirectTo" value="<?= base64_encode($redirectTo) ?>">
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <label for="SignupEmail">E-Posta Adresi:</label>

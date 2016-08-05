@@ -1,0 +1,98 @@
+<?
+/**
+ * @var ob_order[]              $orders
+ * @var ticket_category_model[] $ticketCategories
+ */
+?>
+<div class="mb">
+    Windsurf, Kiteboard, Wakeboard ve SUP hakkında tüm sorularınızı profesyonel sporcularımız cevaplıyor. <br/>
+    <h2>0 530 776 81 54</h2>
+    Bize <b>info@boardsports.com</b> adresi üzerinden mail yoluyla da ulaşabilirsiniz. <br/><br/>
+    Yeni destek talebi oluşturmadan önce <a href="/destek" class="b">Sıkça Sorulan Sorular</a> bölümüne göz atmanız probleminizin daha hızlı çözülmesini sağlayabilir. <br/>
+    Destek talebinize çalışma saatlerimiz içinde en kısa sürede cevap verilecektir.
+</div>
+<form class="form-horizontal mt" role="form" id="ticketForm" action="/support/newRequest" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
+    <div class="form-group">
+        <label for="ticketCategory" class="col-xs-3 control-label">Kategori:</label>
+        <div class="col-xs-9">
+            <select class="form-control" id="ticketCategory" name="ticket_category_id">
+                <option selected="selected" value="">Seçiniz</option>
+                <? if (count($ticketCategories)) { ?>
+                    <? foreach ($ticketCategories as $ticketCategory) { ?>
+                        <option value="<?= $ticketCategory->ticket_category_id ?>"
+                            data-order="<?= $ticketCategory->order_required ?>"><?= $ticketCategory->category_name ?></option>
+                    <? } ?>
+                <? } ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label" for="ticketSubject">Konu:</label>
+        <div class="col-xs-9">
+            <input type="text" id="ticketSubject" name="ticket_subject" class="form-control required">
+        </div>
+    </div>
+    <div class="form-group" id="orderSelectDiv">
+        <label for="orderID" class="col-xs-3 control-label">İlgili Sipariş:</label>
+        <div class="col-xs-9">
+            <select class="form-control required" id="orderID" name="order">
+                <option selected="selected" value="0">Seçiniz</option>
+                <? if (count($orders)) { ?>
+                    <? foreach ($orders as $order) { ?>
+                        <option value="<?= $order->order_id ?>"><?= $order->order_code ?>
+                            ( Sipariş Tarihi: <?= icms::format_datetime($order->order_time) ?>
+                            | Durumu: <?= $order->orderStatusText() ?> )
+                        </option>
+                    <? } ?>
+                <? } ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ticketMessage" class="col-xs-3 control-label">Mesajınız:</label>
+        <div class="col-xs-9">
+            <textarea id="ticketMessage" name="ticket_message" rows="10" class="form-control required"
+                placeholder="Talebinize daha hızlı ve doğru cevap verebilmemiz için mümkün olan en açıklayıcı şekilde yaşadığınız problemi anlatın."></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label" for="attachment">Dosya Eki:</label>
+        <div class="col-xs-9">
+            <div class="input-group">
+                <span class="input-group-btn"><span class="btn btn-primary btn-file">Gözat&hellip; <input type="file" name="attachment[]" multiple="multiple"></span></span>
+                <input type="text" id="attachment" class="form-control btn-filename" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+            <button class="btn btn-warning" type="submit">Destek Talebini Gönder</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $('#ticketCategory').on('change', function () {
+            if ($(this).find("option:selected").data("order") == "1") {
+                $('#orderSelectDiv').show();
+            } else {
+                $('#orderSelectDiv').hide();
+            }
+        }).trigger("change");
+        $("#ticketForm").validate();
+    });
+    function checkForm() {
+        var $ticketCategory = $('#ticketCategory');
+        if ($ticketCategory.val() == "") {
+            $ticketCategory.parents('.form-group').addClass("has-error");
+            alert("Lütfen destek talebinin bağlı olduğu kategoriyi seçin.");
+            return false;
+        }
+        if ($ticketCategory.find('option:selected').data("order") == "1" && $('#orderID').val() * 1 < 1) {
+            $('#orderSelectDiv').addClass("has-error");
+            alert("Lütfen destek talebinin ilgili olduğu siparişi seçin.");
+            return false;
+        }
+        return true;
+    }
+</script>

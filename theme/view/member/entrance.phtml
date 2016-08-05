@@ -6,12 +6,7 @@
 <div class="socialLogin mb30">
     <p class="text-center"><strong>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca giriş yapabilirsiniz.</strong></p>
     <div class="text-center">
-        <button class="btn btn-primary buttonFacebook xs-mb15" onclick="window.location='/member/oauth/facebook/?b64=<?= base64_encode($redirectTo) ?>'"
-            type="submit">Facebook ile Bağlan
-        </button>
-        <button class="btn btn-primary buttonGooglePlus" onclick="window.location='/member/oauth/google/?b64=<?= base64_encode($redirectTo) ?>'"
-            type="submit">Google+ ile Bağlan
-        </button>
+        <?= implode('', view::getLoginServices($redirectTo, ' ile Bağlan')) ?>
     </div>
 </div>
 <div class="row mb30">

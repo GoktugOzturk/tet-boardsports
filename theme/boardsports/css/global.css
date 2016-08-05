@@ -507,27 +507,45 @@ footer h3 {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
-    background-color: #167fa7 !important;
+    background-color: #167FA7 !important;
 }
 
 .buttonFacebook {
-    background-color: #4267b2;
+    background-color: #4267B2;
 }
 
 .buttonFacebook:hover,
 .buttonFacebook:active,
 .buttonFacebook:focus {
-    background-color: #1a3367 !important;
+    background-color: #1A3367 !important;
 }
 
 .buttonGooglePlus {
-    background-color: #d73d32;
+    background-color: #D73D32;
 }
 
 .buttonGooglePlus:hover,
 .buttonGooglePlus:active,
 .buttonGooglePlus:focus {
-    background-color: #a12c23 !important;
+    background-color: #A12C23 !important;
+}
+
+/* File Upload */
+.btn-file {
+    border: 1px solid #CCC;
+}
+
+.btn-file input[type="file"] {
+    cursor: inherit;
+    display: block;
+    font-size: 100px;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
 }
 
 /* Badges */
@@ -668,9 +686,10 @@ footer h3 {
 }
 
 /* bages-widgets */
-.productbadges.badges{
-	margin-bottom: 15px;
+.productbadges.badges {
+    margin-bottom: 15px;
 }
+
 .productbadges.badges,
 .widgetProductList .badges {
     position: static;
@@ -764,71 +783,74 @@ footer h3 {
     margin-top: 15px;
 }
 
-.owl-carousel .owl-controls .owl-nav .owl-prev{
-	position: absolute;
+.slider .owl-carousel .owl-controls .owl-nav div {
+    position: absolute;
     top: 50%;
+    font-size: 48px;
+    margin-top: -24px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.slider .owl-carousel .owl-controls .owl-nav .owl-prev {
     left: 20px;
-    font-size: 30px;
-    margin-top: -10px;
 }
 
-.owl-carousel .owl-controls .owl-nav .owl-next{
-	position: absolute;
-    top: 50%;
+.slider .owl-carousel .owl-controls .owl-nav .owl-next {
     right: 20px;
-    font-size: 30px;
-    margin-top: -10px;
 }
 
-.footerSocialArea{
-	position: absolute;
-	top:-30px;
-	right:0;
+.footerSocialArea {
+    position: absolute;
+    top: -30px;
+    right: 0;
 }
 
 .footerSocialArea ul,
-.footerSocialArea li{
-	list-style-type:none;
-	padding:0;
-	margin:0;
+.footerSocialArea li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.footerSocialArea li{
-	float:left;
+.footerSocialArea li {
+    float: left;
 }
 
-.footerSocialArea li>a{
-	width:30px;
-	height:30px;
-	display: block;
-	background-image: url("../img/sprite.png");
-	-webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.footerSocialArea li > a {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url("../img/sprite.png");
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.footerSocialArea li>a.social-share{
-	background-position:0 -150px;
+.footerSocialArea li > a.social-share {
+    background-position: 0 -150px;
 }
 
-.footerSocialArea li>a.social-facebook{
-	background-position:-30px -150px;
-}
-.footerSocialArea li>a.social-facebook:hover{
-	background-position:-30px -180px;
+.footerSocialArea li > a.social-facebook {
+    background-position: -30px -150px;
 }
 
-.footerSocialArea li>a.social-twitter{
-	background-position:-60px -150px;
-}
-.footerSocialArea li>a.social-twitter:hover{
-	background-position:-60px -180px;
+.footerSocialArea li > a.social-facebook:hover {
+    background-position: -30px -180px;
 }
 
-.footerSocialArea li>a.social-google-plus{
-	background-position:-90px -150px;
+.footerSocialArea li > a.social-twitter {
+    background-position: -60px -150px;
 }
-.footerSocialArea li>a.social-google-plus:hover{
-	background-position:-90px -180px;
+
+.footerSocialArea li > a.social-twitter:hover {
+    background-position: -60px -180px;
+}
+
+.footerSocialArea li > a.social-google-plus {
+    background-position: -90px -150px;
+}
+
+.footerSocialArea li > a.social-google-plus:hover {
+    background-position: -90px -180px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -853,16 +875,16 @@ footer h3 {
     .xs-mb15 {
         margin-bottom: 15px;
     }
-    
+
     .footerSocialArea {
-	    text-align: center;
-	    font-size: 0;
-	}
-	
-	.footerSocialArea li {
-	    display: inline-block;
-	    font-size: 0;
-	}
+        text-align: center;
+        font-size: 0;
+    }
+
+    .footerSocialArea li {
+        display: inline-block;
+        font-size: 0;
+    }
 }
 
 /* badges-widgets */

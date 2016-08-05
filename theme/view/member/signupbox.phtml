@@ -15,12 +15,7 @@
                 <div class="socialLogin mb30 text-center">
                     <p>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca üye olabilirsiniz.</p>
                     <div>
-                        <button class="btn btn-primary buttonFacebook" onclick="window.location='/member/oauth/facebook/?b64=<?= base64_encode($redirectTo) ?>'"
-                            type="submit">Facebook
-                        </button>
-                        <button class="btn btn-primary buttonGooglePlus" onclick="window.location='/member/oauth/google/?b64=<?= base64_encode($redirectTo) ?>'"
-                            type="submit">Google+
-                        </button>
+                        <?= implode('', view::getLoginServices($redirectTo)) ?>
                     </div>
                 </div>
                 <div class="text-center">
