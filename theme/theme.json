@@ -100,12 +100,12 @@
       "fixedNav": {
         "name": "Sabit Navigasyonda Görünen Logo",
         "width": 150,
-        "height": 48
+        "height": 49
       },
       "fixedNav2x": {
         "name": "Sabit Navigasyonda Görünen Logo (2x)",
         "width": 300,
-        "height": 96
+        "height": 98
       }
     }
   }
