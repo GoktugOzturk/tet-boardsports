@@ -12,12 +12,15 @@
                 <h4 class="modal-title" id="signupLabel">Sitemize Üye Olun</h4>
             </div>
             <div class="modal-body">
-                <div class="socialLogin mb30 text-center">
-                    <p>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca üye olabilirsiniz.</p>
-                    <div>
-                        <?= implode('', view::getLoginServices($redirectTo)) ?>
+                <? $loginServices = view::getLoginServices($redirectTo); ?>
+                <? if (count($loginServices)) { ?>
+                    <div class="socialLogin mb30 text-center">
+                        <p>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca üye olabilirsiniz.</p>
+                        <div>
+                            <?= implode('', $loginServices) ?>
+                        </div>
                     </div>
-                </div>
+                <? } ?>
                 <div class="text-center">
                     <p class="text-center">Sitemize üye olmak için aşağıdaki formu doldurmanız yeterlidir.</p>
                     <form novalidate="novalidate" class="form-horizontal" id="registerForm" role="form" action="/ajax/signup" method="post">

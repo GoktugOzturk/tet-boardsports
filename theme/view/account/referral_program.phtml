@@ -1,0 +1,70 @@
+<?
+/**
+ * @var string $DavetMetni
+ * @var string $FacebookAppID
+ * @var string $TwitterAccount
+ * @var string $ReferralUrl
+ * @var bool   $ReferrerBonus
+ * @var bool   $ReferralBonus
+ */
+?>
+<div class="mb30"><? if ($ReferrerBonus) { ?>Davet ettiğiniz arkadaşınız üye olduğu anda alışveriş çeki kazanır.<br> <? } ?>
+    <? if ($ReferrerBonus) { ?>Referansınızla üye olan arkadaşınızın yaptığı ilk alışverişten sonra alışveriş çeki kazanırsınız.<br> <? } ?>
+    Arkadaşlarını sitemize davet etmek için aşağıdaki üç yöntemden birini kullanabilirsiniz.
+</div>
+<h4>Sosyal Medya'da Paylaş</h4>
+<div class="mb30">
+    Davet linkinizi kullandığınız sosyal medyalarda paylaşarak, yüzlerce arkadaşınıza hızlıca ulaşabilirsiniz.
+    <div class="mt15">
+        <? if (!empty($FacebookAppID)) { ?>
+            <a href="<?= "https://www.facebook.com/dialog/share?app_id=" . $FacebookAppID . "&display=popup&href=" . urlencode($ReferralUrl) . "&redirect_uri="
+            . urlencode($ReferralUrl) ?>" class="btn btn-primary buttonFacebook" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')">Facebook'da
+                Paylaş</a> &nbsp;
+        <? } ?>
+        <? if (!empty($TwitterAccount)) { ?>
+            <a href="<?= "https://twitter.com/share?text=" . $DavetMetni . "&via=" . $TwitterAccount . "&url=" . urlencode($ReferralUrl) ?>" title="Twitter'da Paylaş"
+                class="btn btn-primary buttonTwitter" onclick="return !window.open(this.href, 'Twitter', 'width=640,height=300')">Twitter'da Paylaş</a> &nbsp;
+        <? } ?>
+        <a href="<?= "https://plus.google.com/share?url=" . urlencode($ReferralUrl) ?>" title="Google Plus'da Paylaş" class="btn btn-primary buttonGooglePlus"
+            onclick="return !window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=660,width=510');">Google+'da Paylaş</a>
+    </div>
+</div>
+<h4>E-Posta ile Davet Et</h4>
+<div class="mb30">
+    <div id="mailProgress"></div>
+    <form id="referralForm" onsubmit="return false;" method="post">
+        <div>E-Posta ile tek seferde en fazla 25 arkadaşınızı davet edebilirsiniz. Birden fazla arkadaşınıza davetiye göndermek için e-posta adreslerini virgülle ayırınız.</div>
+        <p>
+            <label for="mail_address">E-Posta Adresleri:</label><textarea class="form-control" rows="3" name="mails" id="mail_address"
+                placeholder="Davet etmek istediğiniz arkadaşlarınızın e-posta adreslerini yazın"></textarea>
+        </p>
+        <p>
+            <label for="mail_message">Mesajınız:</label><textarea id="mail_message" class="form-control" rows="3" name="message"><?= $DavetMetni ?></textarea>
+        </p>
+        <div>
+            <a href="#" class="btn btn-warning" id="maildavetbutton">Arkadaşını Davet Et</a><br/>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#maildavetbutton").on("click", function () {
+            $(this).prop("disabled", true);
+            $('#mailprogress').html('<div class="invprogress">Davet mailleriniz gönderiliyor...</div>').show();
+            $.post("/account/referralSendMail", $("#referralForm").serialize(),
+                function (data) {
+                    var $list = $('#mailProgress').html('<ul class="list-group"></ul>').find("ul");
+                    $.each(data.messages, function (i, item) {
+                        $list.append('<li class="list-group-item list-group-item-' + (item['Status'] == "Error" ? "danger" : "success") + '">' + item['Message'] + '</li>');
+                    });
+                    $('#referralForm').remove();
+                }, "json");
+        });
+    });
+</script>
+<h4>Özel Davet Linkini Paylaş</h4>
+<div>
+    Aşağıda size özel oluşturduğumuz davet linkini kopyalayıp arkadaşlarınıza gönderebilirsiniz. Arkadaşlarınızın bu davet linkine tıklayıp üye olmaları yeterlidir.<br>
+    <label for="custom_link">Davet Linkiniz</label>
+    <input id="custom_link" type="text" class="form-control" value="<?= $ReferralUrl ?>" readonly="readonly" onclick="this.focus(); this.select();" style="cursor: w-resize;">
+</div>

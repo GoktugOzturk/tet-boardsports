@@ -3,12 +3,15 @@
  * @var string $redirectTo
  */
 ?>
-<div class="socialLogin mb30">
-    <p class="text-center"><strong>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca giriş yapabilirsiniz.</strong></p>
-    <div class="text-center">
-        <?= implode('', view::getLoginServices($redirectTo, ' ile Bağlan')) ?>
+<? $loginServices = view::getLoginServices($redirectTo, ' ile Bağlan'); ?>
+<? if (count($loginServices)) { ?>
+    <div class="socialLogin mb30">
+        <p class="text-center"><strong>Sosyal medya hesabınızı kullanarak <?= icms::site_com("a") ?> kolayca giriş yapabilirsiniz.</strong></p>
+        <div class="text-center">
+            <?= implode('', $loginServices) ?>
+        </div>
     </div>
-</div>
+<? } ?>
 <div class="row mb30">
     <div class="col-md-4">
         <h2 class="block-title">Üye Girişi</h2>
