@@ -294,9 +294,6 @@
 
 /* #widgets #*/
 @media only screen and (max-width: 767px) {
-    #thumbnailContainer {
-        display: none;
-    }
 
     .product-info .nav li {
         display: block;
@@ -344,7 +341,20 @@
 }
 
 @media only screen and (max-width: 992px) {
-    #thumbnailContainer {
-        display: none;
+    #thumbnailCarousel {
+        height: auto;
+        margin-left: -10px;
     }
+
+    .productThumbImage {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .productImages img {
+        width: 100% !important;
+        height: auto !important;
+        position: static !important;
+    }
+
 }
