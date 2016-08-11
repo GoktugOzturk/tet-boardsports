@@ -148,13 +148,16 @@ $coupon = $cart->getCoupon();
         </tbody>
     </table>
     <a class="grey acc-btn" href="/">ALIŞVERİŞE DEVAM ET</a>
-    <a class="pull-right acc-btn" href="<?= app::getUrl(ACTIVE_APP, "https") ?>/checkout">SATIN AL</a>
+    <a id="buyNowButton" class="pull-right acc-btn" href="<?= app::getUrl(ACTIVE_APP, "https") ?>/checkout">SATIN AL</a>
+    <a id="updateButton" class="pull-right acc-btn" href="javascript:" type="button" style="display:none;">SEPETİ GÜNCELLE</a>
     <div class="clearfix"></div>
 </div><!-- #col# -->
 <div class="alert alert-info mb30">
     <p>
         <? if ($cart->getMaxEstimatedShippingDate()->format("Y-m-d") == date('Y-m-d')) { ?>
             Siparişiniz, <strong>BUGÜN</strong> kargoya verilecektir.
+        <? } elseif ($cart->getMaxEstimatedShippingDate()->format("Y-m-d") == date('Y-m-d', strtotime("+1 day"))) { ?>
+            Siparişiniz, <strong>YARIN</strong> kargoya verilecektir.
         <? } else {
             if (\TeknoETicaret\Config\Settings::get('shipment.sameday')) { ?>
                 Sepetinizde <strong>Aynı Gün Kargo</strong> olmayan ürünler bulunuyor.<br>
@@ -163,7 +166,7 @@ $coupon = $cart->getCoupon();
                 Siparişiniz tahminen <strong><?= icms::format_date($cart->getMaxEstimatedShippingDate(), true) ?></strong> tarihinde kargoya verilecektir.
             <? } else { ?>
                 Siparişiniz tahminen <strong><?= icms::format_date($cart->getMinEstimatedShippingDate(), true) ?>
-                    - <?= icms::format_date($cart->getMaxEstimatedShippingDate(), true) ?></strong> tarihleri arasında  kargoya verilecektir.
+                    - <?= icms::format_date($cart->getMaxEstimatedShippingDate(), true) ?></strong> tarihleri arasında kargoya verilecektir.
             <? }
         } ?>
     </p>
@@ -251,7 +254,7 @@ $coupon = $cart->getCoupon();
             });
             return true;
         });
-        $(".updateQuantityButton").click(function () {
+        $("#updateButton").click(function () {
             if (qtyChanged) {
                 $('form#cartUpdate').submit();
             }

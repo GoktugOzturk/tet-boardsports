@@ -187,6 +187,12 @@ header {
     margin-bottom: 30px;
 }
 
+#paymentOptions {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 0;
+}
+
 /* Checkout Adımlar: Üye Girişi */
 .checkoutAccountBox {
     max-width: 380px;
@@ -197,6 +203,10 @@ header {
 }
 
 /* Checkout Adımlar: Adres Seçimi */
+.addressView {
+    white-space: normal;
+}
+
 .addressView h4 {
     font-size: 13px
 }
@@ -516,7 +526,6 @@ ul.card_logos {
     overflow: auto;
     padding: 15px 20px;
 }
-
 
 .orderSummaryDetails {
     border: 1px solid #E1E1E1;
