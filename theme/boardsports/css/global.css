@@ -414,13 +414,13 @@ a.acc-btn .glyphicon {
 
 .payment-options-wrapper {
     background-color: #FFF;
-    padding-top: 10px;
+    padding:10px 0 15px 0;
     -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.13);
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.13);
 }
 
 .payment-options {
-    height: 40px;
+    height: 30px;
     background: url("../img/sprite.png") no-repeat center -117px;
 }
 
