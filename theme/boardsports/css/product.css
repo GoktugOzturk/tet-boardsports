@@ -13,6 +13,12 @@
     margin-top: 0;
 }
 
+.shareIcons {
+    position: absolute;
+    top: -30px;
+    right: 0;
+}
+
 .product-detail {
     margin-bottom: 15px;
 }
@@ -215,7 +221,7 @@
 }
 
 .propertyBox {
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #F2F2F2;
     margin-bottom: 15px;
     padding-bottom: 15px;
 }
@@ -294,7 +300,6 @@
 
 /* #widgets #*/
 @media only screen and (max-width: 767px) {
-
     .product-info .nav li {
         display: block;
         width: auto;
@@ -347,6 +352,7 @@
     }
 
     .productThumbImage {
+
         float: left;
         margin-left: 10px;
     }

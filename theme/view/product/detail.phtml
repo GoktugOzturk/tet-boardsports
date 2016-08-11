@@ -1,7 +1,7 @@
 <?
 /**
  * @var ob_product                           $obProduct
- * @var array                                $groupProperties
+ * @var array                                $productGroupLinks
  * @var bool                                 $hasVariants
  * @var array                                $variantProperties
  * @var array                                $productPhotos
@@ -47,18 +47,30 @@
                         <? break; ?>
                     <? } ?>
                     <script>
+                        var resizeTimer;
                         $(function () {
-                            $("#activeImage").elevateZoom({
-                                gallery: 'thumbnailCarousel',
-                                galleryActiveClass: 'active',
-                                imageCrossfade: true,
-                                loadingIcon: '/assets/jquery-elevatezoom/ajax-loader.gif',
-                                zoomWindowFadeIn: 250,
-                                zoomWindowFadeOut: 250,
-                                lensFadeIn: 250,
-                                lensFadeOut: 250,
-                                zoomWindowWidth: 445,
-                                zoomWindowHeight: 445
+                            function initEZPlus() {
+                                $('#activeImage').removeData('elevateZoom');
+                                while ($('.zoomWrapper #activeImage').length > 0) {
+                                    $('.zoomWrapper #activeImage').unwrap();
+                                }
+                                $('.zoomContainer').remove();
+                                $('.ezp-spinner').remove();
+                                $("#activeImage").ezPlus({
+                                    gallery: 'thumbnailCarousel',
+                                    galleryActiveClass: 'active',
+                                    imageCrossfade: true,
+                                    loadingIcon: '/assets/elevatezoom-plus/ajax-loader.gif',
+                                    zoomType: "inner",
+                                    borderSize: 0,
+                                    scrollZoom: true
+                                });
+                            }
+
+                            initEZPlus();
+                            $(window).on("resize", function () {
+                                window.clearTimeout(resizeTimer);
+                                resizeTimer = window.setTimeout(initEZPlus, 100);
                             });
                         });
                     </script>
@@ -68,6 +80,12 @@
     </div><!-- #col# -->
     <div class="col-md-6 col-sm-6 col-xs-12">
         <h1 class="product-title"><?= $mainProductName ?></h1>
+        <div class="shareIcons">
+            <ul class="clearfix">
+                <li class="callToShare">Paylaş:</li>
+                <?= implode('', view::getShareIcons($mainProductUrl)) ?>
+            </ul>
+        </div>
         <div class="productbadges badges">
             <? if ($obProduct->hasBadge(ob_product::BADGE_FREE_SHIPPING)) { ?>
                 <div class="badge free-cargo">
@@ -113,13 +131,15 @@
             </script>
         </div><!-- #star# -->
         <div class="clearfix mb15"></div>
-        <? if (count($groupProperties)) { ?>
-            <? foreach ($groupProperties as $propertyId => $propertyData) { ?>
+        <? if (count($productGroupLinks)) { ?>
+            <? foreach ($productGroupLinks as $propertyId => $propertyData) { ?>
                 <div class="propertyBox groupProperty">
                     <label><?= $propertyData['name'] ?></label>
                     <ul class="nav nav-pills">
                         <? foreach ($propertyData['options'] AS $optionId => $optionData) { ?>
-                            <li <?= ($propertyData['selected'] == $optionId ? 'class="active"' : '') ?>><a href="<?= $optionData['url'] ?>"><?= $optionData['name'] ?></a></li>
+                            <li <?= ((isset($propertyData['selectedOption']) && $propertyData['selectedOption'] == $optionData['option_id']) ? 'class="active"' : '') ?>><a
+                                    href="<?= $optionData['url'] ?>"><?= $optionData['name'] ?></a>
+                            </li>
                         <? } ?>
                     </ul>
                 </div>

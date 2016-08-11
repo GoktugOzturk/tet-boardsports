@@ -341,6 +341,57 @@ a.acc-btn .glyphicon {
     padding: 0;
 }
 
+.shareIcons {
+    position: absolute;
+    top: -30px;
+    right: 0;
+}
+
+.shareIcons ul,
+.shareIcons li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.shareIcons .callToShare {
+    display: none;
+}
+
+.shareIcons li > a {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url("../img/sprite.png");
+    -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.shareIcons li > a.social-facebook {
+    background-position: -30px -150px;
+}
+
+.shareIcons li > a.social-facebook:hover {
+    background-position: -30px -180px;
+}
+
+.shareIcons li > a.social-twitter {
+    background-position: -60px -150px;
+}
+
+.shareIcons li > a.social-twitter:hover {
+    background-position: -60px -180px;
+}
+
+.shareIcons li > a.social-googleplus {
+    background-position: -90px -150px;
+}
+
+.shareIcons li > a.social-googleplus:hover {
+    background-position: -90px -180px;
+}
+
 /* Footer */
 .footer-main {
 }
